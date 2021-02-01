@@ -6,6 +6,11 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
+      <div class="performance">
+        <p>首字节： {{ this.performance.first || '计算中...' }}</p>
+        <p>domReady: {{ this.performance.dom || '计算中...' }}</p>
+        <p>onLoad: {{ this.performance.onLoad || '计算中...' }}</p>
+      </div>
       <DynamicScroller
         :items="list"
         :min-item-size="120"
@@ -53,6 +58,11 @@ export default {
       loading: false,
       finished: false,
       page: 1,
+      performance: {
+        first: null,
+        dom: null,
+        onLoad: null,
+      },
     }
   },
   computed: {
@@ -60,7 +70,17 @@ export default {
       return this.$store.state.topic.list
     },
   },
-  created() {},
+  mounted() {
+    window.addEventListener('load', () => {
+      // eslint-disable-next-line nuxt/no-globals-in-created
+      const timing = window.performance.timing
+      this.performance = {
+        first: timing.responseStart - timing.domainLookupStart + '毫秒',
+        dom: timing.domContentLoadedEventEnd - timing.fetchStart + '毫秒',
+        onLoad: timing.loadEventStart - timing.fetchStart + '毫秒',
+      }
+    })
+  },
   methods: {
     ...mapActions({
       getList: 'topic/getList',
@@ -95,5 +115,19 @@ export default {
 }
 .dzq-list {
   overflow: hidden;
+}
+
+.performance {
+  font-size: 14px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #fff;
+  z-index: 99;
+  border: 1px solid red;
+  p {
+    margin-bottom: 5px;
+  }
 }
 </style>
