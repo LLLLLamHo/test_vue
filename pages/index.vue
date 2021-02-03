@@ -83,7 +83,7 @@ export default {
     }
     window.addEventListener('load', () => {
       // eslint-disable-next-line nuxt/no-globals-in-created
-      this.performance = Object.assign(this.performance, {
+      this.performance = Object.assign({}, this.performance, {
         onLoad: timing.loadEventStart - timing.fetchStart + '毫秒',
       })
     })
