@@ -61,6 +61,7 @@ export default {
       loading: false,
       finished: false,
       page: 1,
+      wait: 0,
       performance: {
         first: null,
         dom: null,
@@ -75,15 +76,28 @@ export default {
     },
   },
   mounted() {
-    const timing = window.performance.timing
-    this.performance = {
-      first: timing.responseStart - timing.domainLookupStart + '毫秒',
-      dom: timing.domContentLoadedEventEnd - timing.fetchStart + '毫秒',
-      render: Date.now() - timing.responseStart + '毫秒',
+    const search = window.location.search.replace('?', '')
+    if (search !== '') {
+      const searchArr = search.split('&')
+      for (let i = 0; i < searchArr.length; i++) {
+        const [key, value] = searchArr[i].split('=')
+        if (key === 'wait') {
+          this.wait = value
+        }
+      }
     }
+    const timing = window.performance.timing
+    setTimeout(() => {
+      this.performance = {
+        first: timing.responseStart - timing.domainLookupStart + '毫秒',
+        dom: timing.domContentLoadedEventEnd - timing.fetchStart + '毫秒',
+        render: Date.now() - timing.responseStart + '毫秒',
+        onLoad: this.performance.onLoad,
+      }
+    }, 300)
     window.addEventListener('load', () => {
       // eslint-disable-next-line nuxt/no-globals-in-created
-      this.performance = Object.assign({}, this.performance, {
+      this.performance = Object.assign(this.performance, {
         onLoad: timing.loadEventStart - timing.fetchStart + '毫秒',
       })
     })
@@ -103,7 +117,7 @@ export default {
         this.page++
         this.loading = false
         clearTimeout(timer)
-      }, 500)
+      }, this.wait)
     },
     onLoad() {
       this.getData()
