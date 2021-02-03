@@ -60,17 +60,17 @@ export default {
 
 <style lang="scss">
 .dzq-item {
-  margin: 0.4rem;
-  padding: 0.2667rem;
+  margin: 8px;
+  padding: 4px;
   background-color: #fff;
   &--header {
     display: flex;
-    height: 1.0667rem;
+    height: 40px;
     justify-content: space-between;
     &_avatar {
-      margin-right: 0.2667rem;
-      width: 1.0667rem;
-      height: 1.0667rem;
+      margin-right: 5px;
+      width: 40px;
+      height: 40px;
       object-fit: cover;
     }
     &_info {
@@ -80,7 +80,7 @@ export default {
 }
 .dzq-content {
   &--text {
-    margin: 0.2667rem 0;
+    margin: 5px 0;
     font-size: 14px;
     word-break: break-all;
   }
@@ -92,8 +92,8 @@ export default {
       height: 3.2rem;
     }
     &.image-multi {
-      width: 2.8rem;
-      height: 2.1333rem;
+      width: 33%;
+      height: 105px;
     }
   }
 }

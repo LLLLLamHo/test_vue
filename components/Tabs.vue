@@ -25,9 +25,9 @@ export default {
   display: flex;
   background-color: #fff;
   &--item {
-    margin: 0 0.4rem;
-    height: 1.3333rem;
-    line-height: 1.3333rem;
+    margin: 0 8px;
+    height: 50px;
+    line-height: 50px;
     font-size: 13px;
     flex: 1 1 auto;
     &.active {

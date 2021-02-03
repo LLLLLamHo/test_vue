@@ -27,15 +27,15 @@ export default {
 <style lang="scss">
 .dzq-stick--item {
   display: flex;
-  padding: 0.3rem 0;
-  margin: 0 0.4rem;
+  padding: 6px 0;
+  margin: 0 8px;
   align-content: center;
   border-bottom: 1px solid #eee;
   &_left {
     display: inline-block;
     margin-right: 4px;
-    width: 0.8533rem;
-    height: 0.48rem;
+    width: 31px;
+    height: 17px;
     justify-content: center;
     align-content: center;
     text-align: center;

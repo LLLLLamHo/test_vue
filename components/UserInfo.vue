@@ -35,12 +35,12 @@ export default {
 <style lang="scss">
 .dzq-user {
   display: flex;
-  height: 1.0667rem;
+  height: 40px;
   justify-content: space-between;
   &--avatar {
-    margin-right: 0.2667rem;
-    width: 1.0667rem;
-    height: 1.0667rem;
+    margin-right: 8px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
   }
   &--info {

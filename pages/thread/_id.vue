@@ -52,16 +52,16 @@ export default {
 
 <style lang="scss">
 .dzq-detail {
-  padding: 0.4rem;
+  padding: 8px;
   background-color: #fff;
 }
 .dzq-content {
   &--text {
-    margin: 0.2667rem 0;
+    margin: 4px 0;
     font-size: 14px;
     word-break: break-all;
     p {
-      margin-bottom: 0.2667rem;
+      margin-bottom: 4px;
       font-size: 14px;
     }
     img {
@@ -69,8 +69,8 @@ export default {
     }
   }
   &--image {
-    width: 8.5333rem;
-    height: 6.4rem;
+    width: 33%;
+    height: 105px;
   }
 }
 .go-back {
