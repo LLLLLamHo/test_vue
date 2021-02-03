@@ -130,7 +130,7 @@ export default {
 .dzq-header {
   background: rgb(24, 120, 243);
   width: 100%;
-  height: 3.2rem;
+  height: 120px;
   background-size: cover;
   background-repeat: no-repeat;
   img {
