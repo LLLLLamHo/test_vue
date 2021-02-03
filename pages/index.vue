@@ -9,6 +9,7 @@
       <div class="performance">
         <p>首字节： {{ this.performance.first || '计算中...' }}</p>
         <p>domReady: {{ this.performance.dom || '计算中...' }}</p>
+        <p>render: {{ this.performance.render || '计算中...' }}</p>
         <p>onLoad: {{ this.performance.onLoad || '计算中...' }}</p>
       </div>
       <DynamicScroller
@@ -20,7 +21,9 @@
         class="scroller"
       >
         <template #before>
-          <div class="dzq-header"></div>
+          <div class="dzq-header">
+            <img src="admin-logo-x2.png" />
+          </div>
           <tabs />
           <div class="padding10"></div>
           <stick-list />
@@ -61,6 +64,7 @@ export default {
       performance: {
         first: null,
         dom: null,
+        render: null,
         onLoad: null,
       },
     }
@@ -71,14 +75,17 @@ export default {
     },
   },
   mounted() {
+    const timing = window.performance.timing
+    this.performance = {
+      first: timing.responseStart - timing.domainLookupStart + '毫秒',
+      dom: timing.domContentLoadedEventEnd - timing.fetchStart + '毫秒',
+      render: Date.now() - timing.responseStart + '毫秒',
+    }
     window.addEventListener('load', () => {
       // eslint-disable-next-line nuxt/no-globals-in-created
-      const timing = window.performance.timing
-      this.performance = {
-        first: timing.responseStart - timing.domainLookupStart + '毫秒',
-        dom: timing.domContentLoadedEventEnd - timing.fetchStart + '毫秒',
+      this.performance = Object.assign(this.performance, {
         onLoad: timing.loadEventStart - timing.fetchStart + '毫秒',
-      }
+      })
     })
   },
   methods: {
@@ -107,11 +114,18 @@ export default {
 
 <style lang="scss">
 .dzq-header {
+  background: rgb(24, 120, 243);
   width: 100%;
-  height: 5.2rem;
-  background-image: url(https://discuz-service-test-1258344699.cos.ap-guangzhou.myqcloud.com/background_image.jpg);
+  height: 3.2rem;
   background-size: cover;
   background-repeat: no-repeat;
+  img {
+    display: block;
+    width: 247px;
+    height: 66px;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
 }
 .dzq-list {
   overflow: hidden;
