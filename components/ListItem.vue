@@ -2,9 +2,7 @@
   <div class="dzq-item" @click="handleClick">
     <user-info :name="name" :avatar="avatar" :create-time="createTime" />
     <div class="dzq-item--content">
-      <div class="dzq-content--text">
-        {{ content }}
-      </div>
+      <div class="dzq-content--text" v-html="content"></div>
       <template v-if="images.length > 0">
         <img
           v-for="(item, index) in images"
@@ -83,6 +81,10 @@ export default {
     margin: 5px 0;
     font-size: 14px;
     word-break: break-all;
+    .qq-emotion {
+      width: 20px;
+      height: 20px;
+    }
   }
   &--image {
     width: 8.5333rem;

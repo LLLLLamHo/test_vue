@@ -15,7 +15,7 @@ const filterTopicList = (data = []) => {
       tmp.avatar = item.user.avatarUrl || ''
     }
     if (item && item.firstPost) {
-      tmp.content = item.firstPost.summaryText || ''
+      tmp.content = item.firstPost.summary || ''
       tmp.images = item.firstPost.images || []
     }
     result.push(tmp)
